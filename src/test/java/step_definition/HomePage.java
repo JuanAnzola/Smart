@@ -9,8 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.Properties;
+import static utilities.PropertyUtils.getProperty;
 
 
 public class HomePage {
@@ -24,9 +23,7 @@ public class HomePage {
     @FindBy(how = How.XPATH, using = "//input[@name=\"vUSUCOD\"]")
     private WebElement txt_Area_Pass;
 
-
     ChromeDriver driver = Hooks.getDriver();
-    Properties properties = new Properties();
 
     public HomePage(){
         PageFactory.initElements(driver, this);
@@ -45,7 +42,7 @@ public class HomePage {
     public void ingresa_sus_credenciales_válidas_y_accede_a_la_plataforma() {
         try {
             txt_Area_User.click();
-            txt_Area_User.sendKeys(properties.getProperty("app.username"));
+            txt_Area_User.sendKeys(getProperty("app.username"));
         }catch (AssertionError | Exception e){
             System.out.println("-Error: " + e);
         }
