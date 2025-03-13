@@ -5,75 +5,43 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import static utilities.PropertyUtils.getProperty;
 
+import static step_definition.Hooks.getDriver;
 
 public class HomePage {
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"BUTTON1\"]")
-    private WebElement btn_Confirmar;
+    @FindBy(how = How.XPATH, using = "//img[@title=\"Matriculas\"]")
+    private WebElement btn_Programacion;
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"vUSUCOD\"]")
-    private WebElement txt_Area_User;
+    public HomePage(){ PageFactory.initElements(getDriver(), this);}
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"vUSUCOD\"]")
-    private WebElement txt_Area_Pass;
-
-    ChromeDriver driver = Hooks.getDriver();
-
-    public HomePage(){
-        PageFactory.initElements(driver, this);
-    }
-
-    @Given("El usuario está en la página de inicio de sesión")
-    public void login_in_to_the_page_and_enter_in_the_personal_account() {
+    @Given("Accede a la seccion de programación y selecciona el plan de estudios")
+    public void selectStudyPlan() {
         try {
-            Assert.assertTrue(btn_Confirmar.isEnabled());
+            Assert.assertTrue(btn_Programacion.isEnabled());
+            btn_Programacion.click();
+
+            System.out.println("");
         }catch (AssertionError | Exception e){
             System.out.println("-Error: " + e);
         }
     }
 
-    @When("Ingresa sus credenciales válidas y accede a la plataforma")
-    public void ingresa_sus_credenciales_válidas_y_accede_a_la_plataforma() {
-        try {
-            txt_Area_User.click();
-            txt_Area_User.sendKeys(getProperty("app.username"));
-        }catch (AssertionError | Exception e){
-            System.out.println("-Error: " + e);
-        }
-    }
-    @Then("Debería ser redirigido al home")
-    public void debería_ser_redirigido_al_home() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Given("El usuario está en la sección de programación")
-    public void el_usuario_está_en_la_sección_de_programación() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("Selecciona el plan de estudios")
-    public void selecciona_el_plan_de_estudios() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("Elige una clase disponible")
-    public void elige_una_clase_disponible() {
+    public void selectAvailableClass() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
     @When("Inicia y confirma el agendamiento")
-    public void inicia_y_confirma_el_agendamiento() {
+    public void confirmScheduling() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
     @Then("Debería ver un mensaje de confirmación de la clase agendada")
-    public void debería_ver_un_mensaje_de_confirmación_de_la_clase_agendada() {
+    public void verifyClassConfirmationMessage() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
