@@ -15,7 +15,6 @@ import static step_definition.Hooks.getDriver;
 import static utilities.PropertyUtils.getProperty;
 
 public class LoginPage {
-
     @FindBy(how = How.XPATH, using = "//input[@name=\"BUTTON1\"]")
     private WebElement btn_Confirmar;
 
