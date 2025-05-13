@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "step_definition",
-        tags = "@---",
+        tags = "@001",
         plugin = {"pretty", "html:target/cucumber-reports.html"}
 )
 

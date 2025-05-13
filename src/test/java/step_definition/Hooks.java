@@ -13,7 +13,7 @@ public class Hooks {
     @Before
     public void setUp() throws IOException {
         try {
-            System.setProperty("webdriver.chrome.driver", "C:\\Driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "");
             driver.get(PropertyUtils.getProperty("app.url"));
             driver.manage().window().maximize();
         } catch (Exception e) {

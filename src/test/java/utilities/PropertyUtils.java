@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class PropertyUtils{
 
-    private static final String PROPERTIES_FILE = "C:\\Cursos\\Atomation_Smart\\src\\test\\resources\\configuration\\application.properties";
+    private static final String PROPERTIES_FILE = "";
     private static Properties properties;
 
     static {
