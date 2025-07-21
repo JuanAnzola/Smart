@@ -1,4 +1,4 @@
-package step_definition;
+package stepdefinition;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -13,7 +13,7 @@ public class Hooks {
     @Before
     public void setUp() throws IOException {
         try {
-            System.setProperty("webdriver.chrome.driver", "");
+            System.setProperty("webdriver.chrome.driver", "C:\\Driver/chromedriver.exe");
             driver.get(PropertyUtils.getProperty("app.url"));
             driver.manage().window().maximize();
         } catch (Exception e) {
@@ -24,7 +24,7 @@ public class Hooks {
     @After
     public void tearDown() {
         try {
-            driver.close();
+            driver.quit();
         } catch (Exception e) {
             System.out.println("Final error:" + e.getMessage());
         }

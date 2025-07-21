@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class PropertyUtils{
 
-    private static final String PROPERTIES_FILE = "";
+    private static final String PROPERTIES_FILE = "C:\\...\\...\\";
     private static Properties properties;
 
     static {
