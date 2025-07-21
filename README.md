@@ -37,7 +37,6 @@ app.url=
 app.username=
 app.password=
 app.accountName=
-app.classNumber=
 ```
 Además, asegúrate de:
   - Tener chromedriver instalado y agregar su path correctamente en Hooks.java:
