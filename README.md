@@ -11,17 +11,21 @@ Maven (opcional, confirmar uso)
 ChromeDriver
  
 ```🧪 Estructura del proyecto
+ ├── pageobjects/
+ │   ├── HomePage.java          # Lógica de programación de clases
+ │   ├── LoginPage.java         # Lógica de inicio de sesión
+ |
  ├── runner/
- │
  │   ├── RunCucumberTest        # Ejecuctable
  │
  ├── step_definition/
  │   ├── Hooks.java             # Manejo del ciclo de vida del WebDriver
- │   ├── LoginPage.java         # Lógica de inicio de sesión
- │   ├── HomePage.java          # Lógica de programación de clases
+ │   ├── LoginStep.java         # Asociacion de los steps con la logica del login
+ │   ├── HomeStep.java          # Asociacion de los steps con la logica del programacion de clases
  │
  ├── utilities/
  │   └── PropertyUtils.java     # Carga de propiedades desde application.properties
+ |   └── WebDriverUtils.java    # Contiene utilidades comunes en las Pages
  │
  ├── resources/
  │   └── application.properties # Archivo de configuración del entorno
