@@ -11,23 +11,33 @@ Maven (opcional, confirmar uso)
 ChromeDriver
  
 ```🧪 Estructura del proyecto
- ├── runner/
- │
- │   ├── RunCucumberTest        # Ejecuctable
- │
- ├── step_definition/
- │   ├── Hooks.java             # Manejo del ciclo de vida del WebDriver
- │   ├── LoginPage.java         # Lógica de inicio de sesión
- │   ├── HomePage.java          # Lógica de programación de clases
- │
- ├── utilities/
- │   └── PropertyUtils.java     # Carga de propiedades desde application.properties
- │
- ├── resources/
- │   └── application.properties # Archivo de configuración del entorno
- │
- ├── features/
- │   └── Test.feature           # Descripcion de los ecenarios
+    ├── runner/
+    │   └── RunCucumberTest.java                # Ejecutable principal
+    │
+    ├── step_definition/
+    │   ├── Hooks.java                          # Manejo del ciclo de vida WebDriver
+    │   ├── LoginSteps.java                     # Steps relacionados al login
+    │   ├── HomeSteps.java                      # Steps relacionados al home
+    │
+    ├── page_objects/                           # Carpeta nueva para POM
+    │   ├── LoginPage.java                      # Page Object para login
+    │   ├── HomePage.java                       # Page Object para home
+    │
+    ├── utilities/
+    │   ├── JsonUtils.java                      # Carga y parseo de JSON
+    │   ├── PropertyUtils.java                  # Carga de properties
+    │   └── WebDriverUtils.java                 # Manejo de WebDriver
+    │
+    ├── resources/
+    │   ├── configuration/
+    │   │   └── application.properties          # Archivo de configuración del entorno 
+    │   │
+    │   └── data/
+    │       └── test_groups.json                # Datos de pruebas (agrupaciones)
+    │
+    ├── features/
+    │   └── Test.feature                        # Escenarios en Gherkin
+
 ```
 
 ⚙️ Configuración

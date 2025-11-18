@@ -16,13 +16,13 @@ public class LoginStep {
         PageFactory.initElements(getDriver(), this.loginPage);
     }
 
-    @Given("El usuario está en la página de inicio de sesión")
-    public void  verifyLoginPageLoaded() {
+    @Given("El usuario está en la página de Visado")
+    public void verifyLoginPageLoaded() {
         loginPage.isInTheLoginPage();
     }
 
-    @When("Ingresa sus credenciales válidas y accede a la plataforma")
+    @When("El usuario se loguea de forma exitsa")
     public void enterValidCredentials() {
-        loginPage.fillCredentials();
+        loginPage.userSendCredentials();
     }
 }

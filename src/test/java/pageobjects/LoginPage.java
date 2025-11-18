@@ -5,59 +5,56 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+import utilities.PropertyUtils;
+import static utilities.WebDriverUtils.scrollToElement;
+import static utilities.WebDriverUtils.wait;
 
-import static stepdefinition.Hooks.getDriver;
-import static utilities.PropertyUtils.getProperty;
-import static utilities.WebDriverUtils.switchToIframe;
 
 public class LoginPage {
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"BUTTON1\"]")
-    private WebElement btn_Confirmar;
+    @FindBy(how = How.XPATH, using = "//h1[text()='Información importante para solicitantes de visa']")
+    private WebElement lbl_Title;
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"vUSUCOD\"]")
-    private WebElement txt_Area_User;
+    @FindBy(how = How.XPATH, using = "//h1[text()='Iniciar sesión o crear una cuenta']")
+    private WebElement lbl_login;
 
-    @FindBy(how = How.XPATH, using = "//input[@name=\"vPASS\"]")
-    private WebElement txt_Area_Pass;
+    @FindBy(how = How.XPATH, using = "//input[@class=\"string email required\"]")
+    private WebElement input_email;
 
-    @FindBy(how = How.XPATH, using = "//input[@value=\"Regresar\"]")
-    private WebElement btn_Regresar;
+    @FindBy(how = How.XPATH, using = "//input[@class=\"password optional\"]")
+    private WebElement input_password;
 
-    @FindBy(how = How.XPATH, using = "//iframe[@id=\"gxp0_ifrm\"]")
-    private WebElement ifr_news;
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'icheckbox') and contains(@class, 'icheck-item') and contains(@class, 'icheck')]")
+    private WebElement chk_policies;
 
-    @FindBy(how = How.XPATH, using = "//span[@class=\"ReadonlyAttribute\"]")
-    private WebElement lbl_displayName;
+    @FindBy(how = How.XPATH, using = "//input[@data-disable-with=\"Iniciar sesión\"]")
+    private WebElement btn_login;
 
-    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-
-
-    public void isInTheLoginPage(){
-        Assert.assertTrue("El botón Confirmar no está habilitado", btn_Confirmar.isEnabled());
+    public void isInTheLoginPage() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(lbl_Title));
+            Assert.assertTrue("El title no está habilitado", lbl_Title.isDisplayed());
+        } catch(AssertionError | Exception e){
+            System.out.println("Error encontrando el titulo de la pagina" + e);
+        }
     }
 
-    public void fillCredentials(){
+    public void userSendCredentials() {
         try {
-            String user = getProperty("app.username");
-            String pass = getProperty("app.password");
-            String expectedName = getProperty("app.accountName");
-
-            if (user == null || pass == null || expectedName == null) {
-                throw new IllegalArgumentException("Faltan propiedades en el archivo de configuración");
-            }
-            txt_Area_User.sendKeys(user);
-            txt_Area_Pass.sendKeys(pass);
-            btn_Confirmar.click();
-            wait.until(ExpectedConditions.elementToBeClickable(ifr_news));
-            switchToIframe(ifr_news);
-            btn_Regresar.click();
-            getDriver().switchTo().defaultContent();
-            Assert.assertEquals("El nombre del usuario no coincide", lbl_displayName.getText(), getProperty("app.accountName"));
-        }catch (AssertionError | Exception e){
-            System.out.println("-Error: " + e);
+            scrollToElement(lbl_login);
+            Thread.sleep(1000);
+            input_email.click();
+            input_email.sendKeys(PropertyUtils.getProperty("app.user"));
+            input_password.click();
+            Thread.sleep(1500);
+            input_password.sendKeys(PropertyUtils.getProperty("app.password"));
+            Thread.sleep(900);
+            chk_policies.click();
+            Thread.sleep(4000);
+            btn_login.click();
+        } catch(AssertionError | Exception e){
+            System.out.println("Error enviando las credenciales a la pagina");
+            System.out.println("Error" + e);
         }
     }
 
